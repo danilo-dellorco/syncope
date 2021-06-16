@@ -2338,8 +2338,14 @@ under the License.
           <version>2.22.2</version>
           <configuration>
             <redirectTestOutputToFile>true</redirectTestOutputToFile>
-            <encoding>utf-8</encoding>
-            <runOrder>alphabetical</runOrder>
+            <argLine>
+              -Xmx2G -Djava.net.preferIPv4Stack=true -Dio.netty.leakDetection.level=paranoid
+            </argLine>
+            <forkCount>1</forkCount>
+            <reuseForks>false</reuseForks>
+            <trimStackTrace>false</trimStackTrace>
+            <forkedProcessTimeoutInSeconds>1800</forkedProcessTimeoutInSeconds>
+            <rerunFailingTestsCount>2</rerunFailingTestsCount>
           </configuration>
         </plugin>
         <plugin>
@@ -2350,6 +2356,7 @@ under the License.
             <redirectTestOutputToFile>true</redirectTestOutputToFile>
             <encoding>utf-8</encoding>
             <runOrder>alphabetical</runOrder>
+            <skipITs>true</skipITs>       <!-- Aggiunto da me-->
           </configuration>
           <executions>
             <execution>
