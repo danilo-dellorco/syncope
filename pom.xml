@@ -544,6 +544,7 @@
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<aggregate.report.dir>mytests/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 
 		<targetJdk>11</targetJdk>
 		<rootpom.basedir>${basedir}</rootpom.basedir>
@@ -558,7 +559,6 @@
 		<sonar.java.source>11</sonar.java.source>
 		<sonar.java.file.suffixes>.java</sonar.java.file.suffixes>
 		<sonar.verbose>true</sonar.verbose>
-		<aggregate.report.dir>mytests/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 		<redirectTestOutputToFile>true</redirectTestOutputToFile>
 	</properties>
 
