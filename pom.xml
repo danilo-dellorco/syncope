@@ -385,6 +385,7 @@
 
 	<properties>
 		<syncope.version>${project.version}</syncope.version>
+		<jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
 
 		<connid.version>1.5.0.2</connid.version>
 		<connid.soap.version>1.4.3</connid.soap.version>
