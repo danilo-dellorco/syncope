@@ -2674,7 +2674,7 @@
 				<version>1.4</version>
 				<configuration>
 					<!-- Fail the build if any artifacts are missing legal files -->
-					<strict>true</strict>
+					<strict>false</strict>
 				</configuration>
 				<executions>
 					<execution>
