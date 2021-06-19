@@ -385,7 +385,6 @@
 
 	<properties>
 		<syncope.version>${project.version}</syncope.version>
-		<jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
 
 		<connid.version>1.5.0.2</connid.version>
 		<connid.soap.version>1.4.3</connid.soap.version>
@@ -2497,6 +2496,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
+					<skip>true</skip>
 					<resourceExcludes>**/LICENSE,**/NOTICE</resourceExcludes>
 				</configuration>
 				<executions>
@@ -2528,10 +2528,6 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
-						<!-- configurazione aggiunta da me per evitare l'errore 'classi con 
-							lo stesso nome' sostituire con <includes> solo le classi di test mie <configuration> 
-							<excludes> <exclude>**/*.*</exclude> </excludes> <includes> <include>**/EncryptorEncodeTest.java</include> 
-							</includes> </configuration> -->
 					</execution>
 				</executions>
 			</plugin>
@@ -2699,32 +2695,6 @@
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<tagNameFormat>syncope-@{project.version}</tagNameFormat>
 				</configuration>
-			</plugin>
-
-			<!-- JACOCO PLUGIN -->
-			<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.6.0.1398</version>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco-maven-plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
