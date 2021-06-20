@@ -43,10 +43,11 @@ public class GroupValidator extends AbstractValidator<GroupCheck, Group> {
                             "A group must either be owned by an user or a group, not both")).
                     addPropertyNode("owner").addConstraintViolation();
         }
-
+        
         if (isValid && (group.getName() == null || !KEY_PATTERN.matcher(group.getName()).matches())) {
             isValid = false;
-
+            
+            
             context.buildConstraintViolationWithTemplate(
                     getTemplate(EntityViolationType.InvalidName, group.getName())).
                     addPropertyNode("name").addConstraintViolation();

@@ -31,9 +31,21 @@
 		<rootpom.basedir>${basedir}/../..</rootpom.basedir>
 		<destFile>{basedir}/target/jacoco.exec</destFile>
 		<sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
@@ -116,11 +128,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -231,65 +238,15 @@
 			</testResource>
 		</testResources>
 	</build>
-	<!--
-	<profiles>
-		<profile>
-			<id>sqlgen</id>
-
-			<properties>
-				<skipTests>true</skipTests>
-			</properties>
-
-			<build>
-				<defaultGoal>clean verify</defaultGoal>
-
-				<plugins>
-					<plugin>
-						<groupId>org.apache.openjpa</groupId>
-						<artifactId>openjpa-maven-plugin</artifactId>
-						<inherited>true</inherited>
-						<executions>
-							<execution>
-								<id>sqlgen</id>
-								<phase>process-classes</phase>
-								<goals>
-									<goal>sql</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>schemagen</id>
-
-			<properties>
-				<skipTests>true</skipTests>
-			</properties>
-
-			<build>
-				<defaultGoal>clean verify</defaultGoal>
-
-				<plugins>
-					<plugin>
-						<groupId>org.apache.openjpa</groupId>
-						<artifactId>openjpa-maven-plugin</artifactId>
-						<inherited>true</inherited>
-						<executions>
-							<execution>
-								<id>schemagen</id>
-								<phase>process-classes</phase>
-								<goals>
-									<goal>schema</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-	-->
+	<!-- <profiles> <profile> <id>sqlgen</id> <properties> <skipTests>true</skipTests> 
+		</properties> <build> <defaultGoal>clean verify</defaultGoal> <plugins> <plugin> 
+		<groupId>org.apache.openjpa</groupId> <artifactId>openjpa-maven-plugin</artifactId> 
+		<inherited>true</inherited> <executions> <execution> <id>sqlgen</id> <phase>process-classes</phase> 
+		<goals> <goal>sql</goal> </goals> </execution> </executions> </plugin> </plugins> 
+		</build> </profile> <profile> <id>schemagen</id> <properties> <skipTests>true</skipTests> 
+		</properties> <build> <defaultGoal>clean verify</defaultGoal> <plugins> <plugin> 
+		<groupId>org.apache.openjpa</groupId> <artifactId>openjpa-maven-plugin</artifactId> 
+		<inherited>true</inherited> <executions> <execution> <id>schemagen</id> <phase>process-classes</phase> 
+		<goals> <goal>schema</goal> </goals> </execution> </executions> </plugin> 
+		</plugins> </build> </profile> </profiles> -->
 </project>
