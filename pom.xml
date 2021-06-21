@@ -385,7 +385,6 @@
 
 	<properties>
 		<syncope.version>${project.version}</syncope.version>
-		<mockito.version>3.7.0</mockito.version>
 
 		<connid.version>1.5.0.2</connid.version>
 		<connid.soap.version>1.4.3</connid.soap.version>
