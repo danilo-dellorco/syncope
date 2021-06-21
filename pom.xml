@@ -572,18 +572,6 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-junit-jupiter</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.junit.jupiter</groupId>
-						<artifactId>junit-jupiter-api</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
 				<groupId>jakarta.validation</groupId>
 				<artifactId>jakarta.jakarta.validation-api</artifactId>
 				<version>2.0.2</version>
@@ -2057,24 +2045,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-junit-jupiter</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.junit.jupiter</groupId>
-						<artifactId>junit-jupiter-api</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter</artifactId>
 				<version>${junit.version}</version>
@@ -2380,7 +2350,7 @@
 						<redirectTestOutputToFile>true</redirectTestOutputToFile>
 						<encoding>utf-8</encoding>
 						<runOrder>alphabetical</runOrder>
-						<skipITs>true</skipITs>       <!-- Aggiunto da me -->
+						<skipITs>true</skipITs>
 					</configuration>
 					<executions>
 						<execution>
