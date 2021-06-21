@@ -30,4 +30,4 @@ before_install:
 
 install: mvn -U -T 1C -q clean -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true -Dmaven.javadoc.skip=true
 script: 
-- mvn -ntp -Dtest=GroupValidatorTest -DfailIfNoTests=false clean verify -e org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=danilo-dellorco_syncope -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true -Dmaven.javadoc.skip=true
+- mvn -ntp "-Dtest=mytests/*Test" -DfailIfNoTests=false clean verify -e org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dsonar.projectKey=danilo-dellorco_syncope -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true -Dmaven.javadoc.skip=true
