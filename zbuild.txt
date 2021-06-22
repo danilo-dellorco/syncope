@@ -1,1 +1,5 @@
+Old:
 mvn -ntp -P mutation -Dtest=GroupValidatorTest -DfailIfNoTests=false clean verify -e org.jacoco:jacoco-maven-plugin:prepare-agent -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true -Dmaven.javadoc.skip=true
+
+New:
+mvn -ntp -P mutation "-Dtest=mytests/*Test" -DfailIfNoTests=false clean verify -e org.jacoco:jacoco-maven-plugin:prepare-agent -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true -Dmaven.javadoc.skip=true
