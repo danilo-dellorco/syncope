@@ -8,7 +8,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	GetGroupOwnerTest.class,
     ParseGroupOwnerRealmTest.class,
-    NormalizingAddToTest.class
+    NormalizingAddToTest.class,
+    NormalizeTest.class,
+    GetEffectiveTest.class
 })
 
 public class RealmUtilsTest {}
