@@ -80,7 +80,7 @@ public class GetEffectiveTest {
 			if (allowedRealmsType.equals(VALID_ALLOWED)) {
 		        allowedRealms.add("realmA");
 		        allowedRealms.add("realmB");
-		        allowedRealms.add("realmC");
+		        allowedRealms.add(requestedRealm);
 			}
 			else {
 				allowedRealms = null;

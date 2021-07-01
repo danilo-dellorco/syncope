@@ -56,6 +56,8 @@ public class GroupValidator extends AbstractValidator<GroupCheck, Group> {
         if (isValid) {
             Set<AnyType> anyTypes = new HashSet<>();
             for (ADynGroupMembership memb : group.getADynMemberships()) {
+            	System.out.println(memb);
+            	System.out.println(memb.getAnyType());
                 anyTypes.add(memb.getAnyType());
 
                 if (memb.getAnyType().getKind() != AnyTypeKind.ANY_OBJECT) {
@@ -67,7 +69,9 @@ public class GroupValidator extends AbstractValidator<GroupCheck, Group> {
                             addPropertyNode("aDynMemberships").addConstraintViolation();
                 }
             }
-
+            
+            System.out.println("check size: " + (anyTypes.size() < group.getADynMemberships().size()));
+            System.out.println("valid: " + isValid);
             if (isValid && anyTypes.size() < group.getADynMemberships().size()) {
                 context.buildConstraintViolationWithTemplate(
                         getTemplate(EntityViolationType.InvalidADynMemberships,

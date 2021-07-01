@@ -1,6 +1,5 @@
 package org.apache.syncope.core.provisioning.api.mytests.testcases;
 
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -12,9 +11,7 @@ import java.util.Set;
 
 import org.apache.syncope.core.provisioning.api.utils.RealmUtils;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
@@ -28,13 +25,7 @@ public class NormalizingAddToTest {
 	
 	public static final String VALID_NEW_REALM = "vnr";
 	public static final String CONTAINED_NEW_REALM = "cnr";
-	public static final String CONTAINED_REALM = "cr";
-	public static final String NULL_REALM_SET = "nrs";
-	public static final String NULL_NEW_REALM = "nnr";
-	
-	
-	@Rule
-	public ExpectedException expectedException = ExpectedException.none();
+	public static final String CONTAINED_REALMS = "cr";
 	
 	@Before
 	public void configureParameters() {
@@ -53,7 +44,7 @@ public class NormalizingAddToTest {
 			newRealm = "RealmA_something";
 			break;
 			
-		case (CONTAINED_REALM):
+		case (CONTAINED_REALMS):
 			realmsSet.add("RealmA_something");
 			realmsSet.add("RealmA_somethingElse");
 			newRealm = "RealmA";
@@ -67,7 +58,7 @@ public class NormalizingAddToTest {
 		
 		testInputs.add(new TestParameters(VALID_NEW_REALM));
 		testInputs.add(new TestParameters(CONTAINED_NEW_REALM));
-		testInputs.add(new TestParameters(CONTAINED_REALM));
+		testInputs.add(new TestParameters(CONTAINED_REALMS));
 		
 		return testInputs;
 	}
@@ -94,7 +85,7 @@ public class NormalizingAddToTest {
 				assertEquals(2, realmsSet.size());
 				break;
 		
-			case (CONTAINED_REALM):
+			case (CONTAINED_REALMS):
 				assertTrue(RealmUtils.normalizingAddTo(realmsSet, newRealm));
 				assertEquals(1, realmsSet.size());
 				break;

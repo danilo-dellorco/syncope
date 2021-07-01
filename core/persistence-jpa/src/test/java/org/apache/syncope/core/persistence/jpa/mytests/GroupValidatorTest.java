@@ -47,9 +47,11 @@ public class GroupValidatorTest {
 	
 	public static final String NOT_VALID_GROUP_MEMB = "not_valid_group_memb";
 	public static final String NOT_VALID_GROUP_SIZE = "not_valid_group_size";
+	public static final String NOT_VALID_GROUP_MEMB_DIFF = "not_valid_group_memb_diff";
 	
 	public static final String VALID_CONTEXT = "valid_context";
 	public static final String NULL_CONTEXT = "null_context";
+	
 
     private static GroupValidator groupValidator;
     
@@ -117,7 +119,7 @@ public class GroupValidatorTest {
     	testInput.add (new GroupValidatorTestParameters(GROUP_OWNED_GROUP, VALID_CONTEXT, true));
     	testInput.add (new GroupValidatorTestParameters(NOT_VALID_GROUP_CHAR, VALID_CONTEXT, false));
     	testInput.add (new GroupValidatorTestParameters(NOT_VALID_GROUP_MEMB, VALID_CONTEXT, false));
-    	testInput.add (new GroupValidatorTestParameters(NOT_VALID_GROUP_SIZE, VALID_CONTEXT, false));
+    	testInput.add (new GroupValidatorTestParameters(NOT_VALID_GROUP_MEMB_DIFF, VALID_CONTEXT, false));
     	return testInput;
     }
 
@@ -135,7 +137,9 @@ public class GroupValidatorTest {
         	
         case (VALID_GROUP):
         	when(group.getName()).thenReturn(GROUP_NAME);
-        	membershipSetup();
+	    	membershipList.add(membership);
+	    	doReturn(membershipList).when(group).getADynMemberships();
+	    	when(membership.getAnyType()).thenReturn(anytype);
         	when(anytype.getKind()).thenReturn(AnyTypeKind.ANY_OBJECT); // aggiunto dopo miglioramento test suite
         	break;    	
         
@@ -166,25 +170,24 @@ public class GroupValidatorTest {
         	
         case (NOT_VALID_GROUP_MEMB):
         	when(group.getName()).thenReturn(GROUP_NAME);
-        	membershipSetup();
+	    	membershipList.add(membership);
+	    	doReturn(membershipList).when(group).getADynMemberships();
+	    	when(membership.getAnyType()).thenReturn(anytype);
         	when(membership.getAnyType()).thenReturn(anytype);
         	when(anytype.getKind()).thenReturn(AnyTypeKind.USER); //instead of ANY_OBJECT
         	break;
-        	
-        case (NOT_VALID_GROUP_SIZE):
+        
+        case (NOT_VALID_GROUP_MEMB_DIFF):
         	when(group.getName()).thenReturn(GROUP_NAME);
-	        when(group.getADynMemberships()).thenAnswer(new Answer<Object>() {
-	            private int count = 0;
-	
-	            public Object answer(InvocationOnMock invocation) {
-	                if (count == 0) {
-	                	count++;
-	                	return membershipList;
-	                }
-	                membershipSetup();
-	                return membershipList;
-	            }
-	        });
+        	ADynGroupMembership membership1 = mock(ADynGroupMembership.class);
+        	ADynGroupMembership membership2 = mock(ADynGroupMembership.class);
+        	membershipList.add(membership1);
+        	membershipList.add(membership2);
+        	
+        	when(membership1.getAnyType()).thenReturn(anytype);
+        	when(membership2.getAnyType()).thenReturn(anytype);
+        	when(anytype.getKind()).thenReturn(AnyTypeKind.ANY_OBJECT);
+        	doReturn(membershipList).when(group).getADynMemberships();
         }
     }
     
@@ -206,13 +209,6 @@ public class GroupValidatorTest {
 	        when (node.addConstraintViolation()).thenReturn(validatorContext);
 	        break;
         }
-
-    }
-    
-    public void membershipSetup() {
-    	membershipList.add(membership);
-    	doReturn(membershipList).when(group).getADynMemberships();
-    	when(membership.getAnyType()).thenReturn(anytype);
     }
 
     
