@@ -28,15 +28,22 @@
 	<packaging>jar</packaging>
 
 	<properties>
-    <rootpom.basedir>${basedir}/../..</rootpom.basedir>
-    <destFile>{basedir}/target/jacoco.exec</destFile>
-    <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+		<rootpom.basedir>${basedir}/../..</rootpom.basedir>
+		<destFile>{basedir}/target/jacoco.exec</destFile>
+		<sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-jexl3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.pitest</groupId>
+			<artifactId>pitest-maven</artifactId>
+			<version>1.6.2</version>
+			<type>maven-plugin</type>
 		</dependency>
 
 		<dependency>
@@ -135,6 +142,45 @@
 					<rerunFailingTestsCount>2</rerunFailingTestsCount>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.6.2</version>
+				<configuration>
+					<targetClasses>
+						<param>org.apache.syncope.core.provisioning.api.utils.RealmUtils</param>
+					</targetClasses>
+					<targetTests>
+						<param>org.apache.syncope.core.provisioning.api.mytests.RealmUtilsTest</param>
+					</targetTests>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>mutation</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.pitest</groupId>
+							<artifactId>pitest-maven</artifactId>
+							<executions>
+								<execution>
+									<id>pit-report</id>
+									<goals>
+										<goal>mutationCoverage</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
 </project>
